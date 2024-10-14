@@ -1,3 +1,5 @@
+;size_t strlen(const char *s);
+
 bits 64
 
 global _ft_strlen

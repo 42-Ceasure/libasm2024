@@ -1,3 +1,5 @@
+;ssize_t write(int fd, const void *buf, size_t count);
+
 bits 64
 
 global _ft_write
