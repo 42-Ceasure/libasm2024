@@ -1,5 +1,4 @@
-;char *strcpy(char *dest, const char *src);
-;               rdi              rsi
+;char *ft_strcpy(char *dest, const char *src);
 
 bits 64
 

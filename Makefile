@@ -7,7 +7,7 @@ CFLAG	=	-f elf64
 
 NAME	=	test
 
-SRC		=	main.s ft_strlen.s ft_strcpy.s ft_write.s
+SRC		=	ft_strlen.s ft_write.s main.s
 
 SRCDIR	=	./src/
 SRCFILL	=	$(addprefix $(SRCDIR), $(SRC))
@@ -16,16 +16,14 @@ OBJ		=	$(SRC:.s=.o)
 OBJDIR	=	./obj/
 OBJFILL	=	$(addprefix $(OBJDIR), $(OBJ))
 
-INC		=	./inc/
-
 all:			$(NAME)
 
 $(NAME):		$(OBJFILL)
-				ld $^ -o $@ -lc
+				ld $^ -o $@ -lc -I/lib/x86_64-linux-gnu/libc.so.6
 
 $(OBJDIR)%.o:	$(SRCDIR)%.s
 				@mkdir -p $(OBJDIR)
-				$(CC) $(CFLAG) -I $(INC) $< -o $@
+				$(CC) $(CFLAG) $< -o $@
 
 clean:
 				rm -rf $(OBJDIR)
