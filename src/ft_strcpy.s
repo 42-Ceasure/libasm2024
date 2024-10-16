@@ -10,11 +10,13 @@ section .text
         mov rax, rdi
 
     processing_loop:
-        mov dil, sil
-        cmp sil, 0
+        mov r8b, [rsi]
+        cmp r8b, 0
         je exit_ft
-        inc rdi
+        mov dil, r8b
+        inc r8
         inc rsi
+        inc rdi
         jmp processing_loop
 
     exit_ft:

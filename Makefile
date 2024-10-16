@@ -3,11 +3,11 @@
 
 CC		=	nasm
 
-CFLAG	=	-f elf64
+CFLAG	=	-f elf64 -gdwarf
 
 NAME	=	test
 
-SRC		=	ft_strlen.s ft_write.s main.s
+SRC		=	ft_strlen.s ft_strcpy.s
 
 SRCDIR	=	./src/
 SRCFILL	=	$(addprefix $(SRCDIR), $(SRC))
@@ -18,8 +18,11 @@ OBJFILL	=	$(addprefix $(OBJDIR), $(OBJ))
 
 all:			$(NAME)
 
-$(NAME):		$(OBJFILL)
-				ld $^ -o $@ -lc -I/lib/x86_64-linux-gnu/libc.so.6
+$(NAME):		$(OBJFILL) ./obj/main.o
+				gcc $^ -o $@
+
+./obj/main.o:
+				gcc -c ./src/main.c -o ./obj/main.o
 
 $(OBJDIR)%.o:	$(SRCDIR)%.s
 				@mkdir -p $(OBJDIR)

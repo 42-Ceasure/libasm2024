@@ -8,15 +8,14 @@ section .text
 
     _ft_strlen:
         xor rcx, rcx
-        cmp rdi, rcx
-        je exit_ft
 
     processing_loop:
-        mov r8, [rdi]
+        mov r8b, [rdi]
+        cmp r8b, 0
+        je exit_ft
         inc rdi
         inc rcx
-        cmp r8, 0
-        jne processing_loop
+        jmp processing_loop
 
     exit_ft:
         mov rax, rcx
