@@ -1,4 +1,4 @@
-;char *ft_strcpy(char *dest, const char *src);
+;char *_ft_strcpy(char *dest, const char *src);
 
 bits 64
 
@@ -13,7 +13,7 @@ section .text
         mov r8b, [rsi]
         mov [rdi], r8b
         cmp r8b, 0
-        je exit_ft
+        je  exit_ft
         inc rsi
         inc rdi
         jmp processing_loop

@@ -1,4 +1,4 @@
-;size_t ft_strlen(const char *s);
+;size_t _ft_strlen(const char *s);
 
 bits 64
 
@@ -8,11 +8,13 @@ section .text
 
     _ft_strlen:
         xor rcx, rcx
+        cmp rdi,  0
+        je  exit_ft
 
     processing_loop:
         mov r8b, [rdi]
         cmp r8b, 0
-        je exit_ft
+        je  exit_ft
         inc rdi
         inc rcx
         jmp processing_loop

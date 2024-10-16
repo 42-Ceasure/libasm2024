@@ -3,11 +3,11 @@
 
 CC		=	nasm
 
-CFLAG	=	-f elf64 -gdwarf
+CFLAG	=	-f elf64
 
 NAME	=	test
 
-SRC		=	ft_strlen.s ft_strcpy.s
+SRC		=	ft_strlen.s ft_strcpy.s ft_strcmp.s
 
 SRCDIR	=	./src/
 SRCFILL	=	$(addprefix $(SRCDIR), $(SRC))
@@ -21,7 +21,7 @@ all:			$(NAME)
 $(NAME):		$(OBJFILL) ./obj/main.o
 				gcc $^ -o $@
 
-./obj/main.o:
+./obj/main.o:	./src/main.c
 				gcc -c ./src/main.c -o ./obj/main.o
 
 $(OBJDIR)%.o:	$(SRCDIR)%.s
