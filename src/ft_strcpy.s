@@ -11,10 +11,9 @@ section .text
 
     processing_loop:
         mov r8b, [rsi]
+        mov [rdi], r8b
         cmp r8b, 0
         je exit_ft
-        mov dil, r8b
-        inc r8
         inc rsi
         inc rdi
         jmp processing_loop
