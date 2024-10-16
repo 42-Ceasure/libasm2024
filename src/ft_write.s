@@ -1,4 +1,4 @@
-;ssize_t ft_write(int fd, const void *buf, size_t count);
+;ssize_t _ft_write(int fd, const void *buf, size_t count);
 
 bits 64
 

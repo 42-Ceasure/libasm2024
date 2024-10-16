@@ -7,16 +7,17 @@ global _ft_strcpy
 section .text
 
     _ft_strcpy:
-        mov rax, rdi
+        mov rax, rdi        ; as we just return pointer on dest,
+                            ; setting return value to adress
 
     processing_loop:
-        mov r8b, [rsi]
-        mov [rdi], r8b
-        cmp r8b, 0
-        je  exit_ft
-        inc rsi
-        inc rdi
-        jmp processing_loop
+        mov r8b, [rsi]      ; save src char
+        mov [rdi], r8b      ; set dest char
+        cmp r8b, 0          ; check for end
+        je  exit_ft         ; if end, go to exit
+        inc rsi             ; increment pointer on src to next char
+        inc rdi             ; increment pointer on dest to next char
+        jmp processing_loop ; go to processing_loop
 
     exit_ft:
-        ret
+        ret                 ; as return value is set from start, just leave

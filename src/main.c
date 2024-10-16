@@ -9,10 +9,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <unistd.h>
 
 extern size_t _ft_strlen(char *str);
 extern char *_ft_strcpy(char *dest, const char *src);
 extern int _ft_strcmp(const char *s1, const char *s2);
+extern ssize_t _ft_write(int fd, const void *buf, size_t count);
+extern ssize_t _ft_read(int fd, void *buf, size_t count);
+extern char *_ft_strdup(const char *str_alpha);
 
 int main(int ac, char **av)
 {
@@ -20,9 +24,13 @@ int main(int ac, char **av)
     int     diff;
     int     realdiff;
     char    *str;
+    char    buf[64];
+    char    *dupstr;
 
     i = 0;
     diff = 0;
+    bzero(buf, 64);
+    dupstr = NULL;
     if (ac > 1)
     {
         i = _ft_strlen(av[1]);
@@ -35,6 +43,10 @@ int main(int ac, char **av)
             diff = _ft_strcmp(av[1], av[2]);
             realdiff = strcmp(av[1], av[2]);
             printf("av[2]\t:%s\ndiff\t:%i\nrdiff\t:%i\n", av[2], diff, realdiff);
+            _ft_read(1, buf, 63);
+            _ft_write(1, buf, 64);
+            dupstr = _ft_strdup(buf);
+            printf("dupstr\t:%s\n", dupstr);
         }
     }
     return (0);
