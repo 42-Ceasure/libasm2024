@@ -33,5 +33,5 @@ section .text
     
     exit_ft:
         xor rax, rax
-        mov rax, r8b
+        mov rax, r8
         ret
