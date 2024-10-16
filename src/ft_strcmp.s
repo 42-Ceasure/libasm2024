@@ -7,31 +7,28 @@ global _ft_strcmp
 section .text
 
     _ft_strcmp:
-        xor r8, r8
         mov rax, rdi
         cmp rax, 0
         je  exit_ft
         cmp rsi, 0
         je  exit_ft
+        xor rax, rax
+        xor rcx, rcx
     
 
     char_compare:
-        mov r8b, [rdi]
-        cmp r8b, [rsi]
+        mov al, [rdi]
+        cmp al, [rsi]
         jne str_not_equal
-        cmp r8b, 0
+        cmp al, 0
         je  exit_ft
         inc rdi
         inc rsi
         jmp char_compare
     
     str_not_equal:
-        xor r8, r8
-        xor r9, r9
-        mov r9b, [rsi]
-        sub r8b, r9b
+        mov cl, [rsi]
+        sub rax, rcx
     
     exit_ft:
-        xor rax, rax
-        mov rax, r8
         ret
