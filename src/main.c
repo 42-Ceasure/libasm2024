@@ -42,13 +42,15 @@ int main(int ac, char **av)
             i = _ft_strlen(av[2]);
             diff = _ft_strcmp(av[1], av[2]);
             realdiff = strcmp(av[1], av[2]);
-            printf("av[2]\t:%s\ndiff\t:%i\nrdiff\t:%i\n", av[2], diff, realdiff);
+            printf("av[2]\t:%s\ndiff\t:%i\nrdiff\t:%i\nType text:\n",
+                            av[2],     diff,       realdiff);
             _ft_read(1, buf, 63);
             _ft_write(1, buf, 64);
             if (ac > 3)
             {
                 dupstr = _ft_strdup(av[3]);
-                printf("dupstr\t:%s\n", dupstr);
+                _ft_write(1, dupstr, _ft_strlen(dupstr));
+                _ft_write(1, "\n", 1);
                 free(dupstr);
             }
         }

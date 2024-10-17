@@ -17,6 +17,8 @@ global _ft_strcpy
 section .text
 
     _ft_strcpy:
+
+    start_ft:
         mov rax, rdi        ; as we just return pointer on dest,
                             ; setting return value to adress
 

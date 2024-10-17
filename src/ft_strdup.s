@@ -26,11 +26,16 @@ extern malloc
 section .text
 
     _ft_strdup:
+    
+    start_ft:
         push rbp
         mov rbp, rsp
 
+    error_check:
         cmp rdi, 0
         je exit_ft
+    
+    
         push rdi        ; save str_alpha pointer on stack;
         call _ft_strlen
         inc rax

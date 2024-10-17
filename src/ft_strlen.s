@@ -17,10 +17,14 @@ global _ft_strlen
 section .text
 
     _ft_strlen:
-        xor rcx, rcx            ; reset rcx (counter for len)
+    
+    error_check:
         cmp rdi,  0             ; check valid
         je  exit_ft             ; if not, go to exit
 
+    start_ft:
+        xor rcx, rcx            ; reset rcx (counter for len)
+    
     processing_loop:
         mov r8b, [rdi]          ; save last byte of rdi
         cmp r8b, 0              ; check if end of str

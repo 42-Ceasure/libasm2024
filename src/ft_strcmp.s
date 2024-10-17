@@ -17,16 +17,19 @@ global _ft_strcmp
 section .text
 
     _ft_strcmp:
+    
+    error_check:
         mov rax, rdi
         cmp rax, 0
         je  exit_ft
         cmp rsi, 0
         je  exit_ft
+
+    start_ft:
         xor rax, rax
         xor rcx, rcx
     
-
-    char_compare:
+    processing_loop:
         mov al, [rdi]
         cmp al, [rsi]
         jne str_not_equal
@@ -34,7 +37,7 @@ section .text
         je  exit_ft
         inc rdi
         inc rsi
-        jmp char_compare
+        jmp processing_loop
     
     str_not_equal:
         mov cl, [rsi]
