@@ -45,9 +45,14 @@ int main(int ac, char **av)
             printf("av[2]\t:%s\ndiff\t:%i\nrdiff\t:%i\n", av[2], diff, realdiff);
             _ft_read(1, buf, 63);
             _ft_write(1, buf, 64);
-            // dupstr = _ft_strdup(buf);
-            // printf("dupstr\t:%s\n", dupstr);
+            if (ac > 3)
+            {
+                dupstr = _ft_strdup(av[3]);
+                printf("dupstr\t:%s\n", dupstr);
+                free(dupstr);
+            }
         }
+        free(str);
     }
     return (0);
 }

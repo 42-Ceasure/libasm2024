@@ -18,8 +18,8 @@ OBJFILL	=	$(addprefix $(OBJDIR), $(OBJ))
 
 all:			$(NAME)
 
-$(NAME):		$(OBJFILL) ./obj/main.o
-				gcc $^ -o $@
+$(NAME):		./obj/main.o $(OBJFILL)
+				gcc -z noexecstack $^ -o $@
 
 ./obj/main.o:	./src/main.c
 				gcc -c ./src/main.c -o ./obj/main.o
