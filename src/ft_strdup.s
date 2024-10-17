@@ -1,27 +1,41 @@
+;Entiers de 64 bits : rdi, rsi, rdx, rcx, r8, r9
+
+;Registres sauvegardés par l'appelé
+;rbx, rbp, rsp, r12, r13, r14, r15
+
+;Registres sauvegardés par l'appelant
+;rax, rcx, rdx, rsi, rdi, r8, r9, r10, r11
+
+
+
 ;char *_ft_strdup(const char *str_alpha);
 
-;void *malloc(size_t size);
 ;size_t _ft_strlen(const char *s);
 ;char *_ft_strcpy(char *dest, const char *src);
+;void *malloc(size_t size);
 
 bits 64
+default rel
 
 global _ft_strdup
+
 extern _ft_strlen
 extern _ft_strcpy
-extern _malloc
+extern malloc
 
 section .text
 
     _ft_strdup:
-        push rdi        ; save str_alpha pointer on stack;
-        xor rax, rax
+        push rbp
+        mov rbp, rsp
+
         cmp rdi, 0
         je exit_ft
+        push rdi        ; save str_alpha pointer on stack;
         call _ft_strlen
         inc rax
         mov rdi, rax
-        call _malloc
+        call malloc
         cmp rax, 0
         je exit_ft
         mov rdi, rax
@@ -29,4 +43,6 @@ section .text
         call _ft_strcpy
 
     exit_ft:
+        mov rsp, rbp
+        pop rbp
         ret
