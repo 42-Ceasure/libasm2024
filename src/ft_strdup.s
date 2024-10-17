@@ -31,7 +31,6 @@ section .text
         cmp rdi, 0
         je exit_ft
     
-    
     start_ft:
         push rbp
         mov rbp, rsp
