@@ -1,17 +1,27 @@
-;ssize_t _ft_read(int fd, void buf[.count], size_t count);
 
-bits 64
+; ssize_t _ft_read(int fd, void buf[.count], size_t count);
 
-global _ft_read
+bits	64
 
-section .text
+global	_ft_read
 
-    _ft_read:
-        mov rax, 0
-        syscall
-        jc error
-        ret
+section	.text
 
-    error:
-        mov rax, -1
-        ret
+	_ft_read:
+		push rbp
+		mov rbp, rsp
+
+	start_ft:
+		mov	rax, 0
+		syscall
+		jc	error
+		ret
+
+	exit_ft:
+		mov	rsp, rbp
+		pop	rbp
+		ret
+
+	error:
+		mov	rax, -1
+		jmp	exit_ft

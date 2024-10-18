@@ -1,51 +1,41 @@
-;Entiers de 64 bits : rdi, rsi, rdx, rcx, r8, r9
 
-;Registres sauvegardés par l'appelé
-;rbx, rbp, rsp, r12, r13, r14, r15
+; char *_ft_strdup(const char *str_alpha);
 
-;Registres sauvegardés par l'appelant
-;rax, rcx, rdx, rsi, rdi, r8, r9, r10, r11
+; size_t _ft_strlen(const char *s);
+; char *_ft_strcpy(char *dest, const char *src);
+; void *malloc(size_t size);
 
+bits	64
 
+global	_ft_strdup
 
-;char *_ft_strdup(const char *str_alpha);
+extern	_ft_strlen
+extern	_ft_strcpy
+extern	malloc
 
-;size_t _ft_strlen(const char *s);
-;char *_ft_strcpy(char *dest, const char *src);
-;void *malloc(size_t size);
+section	.text
 
-bits 64
-default rel
+	_ft_strdup:
 
-global _ft_strdup
+	error_check:
+		push rbp
+		mov rbp, rsp
+		cmp rdi, 0
+		je exit_ft
 
-extern _ft_strlen
-extern _ft_strcpy
-extern malloc
+	start_ft:
+		push rdi		; save str_alpha pointer on stack;
+		call _ft_strlen
+		inc rax
+		mov rdi, rax
+		call malloc WRT ..plt
+		cmp rax, 0
+		je exit_ft
+		mov rdi, rax
+		pop rsi
+		call _ft_strcpy
 
-section .text
-
-    _ft_strdup:
-
-    error_check:
-        cmp rdi, 0
-        je exit_ft
-    
-    start_ft:
-        push rbp
-        mov rbp, rsp
-        push rdi        ; save str_alpha pointer on stack;
-        call _ft_strlen
-        inc rax
-        mov rdi, rax
-        call malloc WRT ..plt
-        cmp rax, 0
-        je exit_ft
-        mov rdi, rax
-        pop rsi
-        call _ft_strcpy
-
-    exit_ft:
-        mov rsp, rbp
-        pop rbp
-        ret
+	exit_ft:
+		mov rsp, rbp
+		pop rbp
+		ret

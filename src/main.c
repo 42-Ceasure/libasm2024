@@ -20,41 +20,41 @@ extern char *_ft_strdup(const char *str_alpha);
 
 int main(int ac, char **av)
 {
-    size_t  i;
-    int     diff;
-    int     realdiff;
-    char    *str;
-    char    buf[64];
-    char    *dupstr;
+	size_t i;
+	int diff;
+	int realdiff;
+	char *str;
+	char buf[64];
+	char *dupstr;
 
-    i = 0;
-    diff = 0;
-    bzero(buf, 64);
-    dupstr = NULL;
-    if (ac > 1)
-    {
-        i = _ft_strlen(av[1]);
-        str = (char *)malloc((sizeof(char) * i) + 1);
-        _ft_strcpy(str, av[1]);
-        printf("av[1]\t:%s\nlen\t:%zu\nstr\t:%s\n", av[1], i, str);
-        if (ac > 2)
-        {
-            i = _ft_strlen(av[2]);
-            diff = _ft_strcmp(av[1], av[2]);
-            realdiff = strcmp(av[1], av[2]);
-            printf("av[2]\t:%s\ndiff\t:%i\nrdiff\t:%i\nType text:\n",
-                            av[2],     diff,       realdiff);
-            _ft_read(1, buf, 63);
-            _ft_write(1, buf, 64);
-            if (ac > 3)
-            {
-                dupstr = _ft_strdup(av[3]);
-                _ft_write(1, dupstr, _ft_strlen(dupstr));
-                _ft_write(1, "\n", 1);
-                free(dupstr);
-            }
-        }
-        free(str);
-    }
-    return (0);
+	i = 0;
+	diff = 0;
+	bzero(buf, 64);
+	dupstr = NULL;
+	if (ac > 1)
+	{
+		i = _ft_strlen(av[1]);
+		str = (char *)malloc((sizeof(char) * i) + 1);
+		_ft_strcpy(str, av[1]);
+		printf("av[1]\t:%s\nlen\t:%zu\nstr\t:%s\n", av[1], i, str);
+		if (ac > 2)
+		{
+			i = _ft_strlen(av[2]);
+			diff = _ft_strcmp(av[1], av[2]);
+			realdiff = strcmp(av[1], av[2]);
+			printf("av[2]\t:%s\ndiff\t:%i\nrdiff\t:%i\nType text:\n",
+							av[2],	   diff,	   realdiff);
+			_ft_read(1, buf, 63);
+			_ft_write(1, buf, 64);
+			if (ac > 3)
+			{
+				dupstr = _ft_strdup(av[3]);
+				_ft_write(1, dupstr, _ft_strlen(dupstr));
+				_ft_write(1, "\n", 1);
+				free(dupstr);
+			}
+		}
+		free(str);
+	}
+	return (0);
 }
