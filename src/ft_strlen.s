@@ -17,8 +17,8 @@ section	.text
 		xor rcx, rcx		; reset rcx (counter for len)
 		
 	processing_loop:
-		mov r8, [rdi]		; save last byte of rdi
-		cmp r8, 0			; check if end of str
+		mov r8b, [rdi]		; save last byte of rdi
+		cmp r8b, 0			; check if end of str
 		je  exit_ft			; if end, go to exit
 		inc rdi				; increment pointer on str to next char
 		inc rcx				; increment counter (len)
