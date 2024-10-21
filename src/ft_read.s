@@ -15,7 +15,6 @@ section	.text
 		mov	rax, 0
 		syscall
 		jc	error
-		ret
 
 	exit_ft:
 		mov	rsp, rbp

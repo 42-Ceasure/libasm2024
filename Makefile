@@ -1,9 +1,11 @@
 
 .PHONY:		all, clean, fclean, re
 
-CC		=	nasm
+SC		=	nasm
+CC		=	gcc
 
-CFLAG	=	-f elf64
+SFLAG	=	-f elf64
+CFLAG	=	-Wall -Wextra -Werror
 
 NAME	=	test
 
@@ -19,14 +21,14 @@ OBJFILL	=	$(addprefix $(OBJDIR), $(OBJ))
 all:			$(NAME)
 
 $(NAME):		./obj/main.o $(OBJFILL)
-				gcc $^ -o $@
+				$(CC) $(CFLAG) $^ -o $@
 
 ./obj/main.o:	./src/main.c
 				@mkdir -p $(OBJDIR)
-				gcc -c ./src/main.c -o ./obj/main.o
+				$(CC) $(CFLAG) -c ./src/main.c -o ./obj/main.o
 
 $(OBJDIR)%.o:	$(SRCDIR)%.s
-				$(CC) $(CFLAG) $< -o $@
+				$(SC) $(SFLAG) $< -o $@
 
 clean:
 				rm -rf $(OBJDIR)
