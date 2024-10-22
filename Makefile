@@ -1,39 +1,57 @@
 
 .PHONY:		all, clean, fclean, re
 
-SC		=	nasm
-CC		=	gcc
+NAME		=	libasm.a
+TEST		=	main_test
 
-SFLAG	=	-f elf64
-CFLAG	=	-Wall -Wextra -Werror
+SC			=	nasm
+SFLAG		=	-f elf64
 
-NAME	=	test
+CC			=	clang
+CFLAG		=	-Wall -Wextra -Werror
 
-SRC		=	ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
+SRCS		=	ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
+SRCDIRS		=	./lasm_src/
+SRCFILS		=	$(addprefix $(SRCDIRS), $(SRCS))
 
-SRCDIR	=	./src/
-SRCFILL	=	$(addprefix $(SRCDIR), $(SRC))
+SRCC		=	main.c
+SRCDIRC		=	./lasm_test/
+SRCFILC		=	$(addprefix $(SRCDIRC), $(SRCC))
 
-OBJ		=	$(SRC:.s=.o)
-OBJDIR	=	./obj/
-OBJFILL	=	$(addprefix $(OBJDIR), $(OBJ))
+OBJDIR		=	./lasm_obj/
+
+OBJS		=	$(SRCS:.s=.o)
+OBJFILS		=	$(addprefix $(OBJDIR), $(OBJS))
+
+OBJC		=	$(SRCC:.c=.o)
+OBJFILC		=	$(addprefix $(OBJDIR), $(OBJC))
+
+INCLUDE		=	./lasm_inc/
 
 all:			$(NAME)
 
-$(NAME):		./obj/main.o $(OBJFILL)
-				$(CC) $(CFLAG) $^ -o $@
+test:			$(NAME) $(TEST)
 
-./obj/main.o:	./src/main.c
-				@mkdir -p $(OBJDIR)
-				$(CC) $(CFLAG) -c ./src/main.c -o ./obj/main.o
+$(NAME):		$(OBJFILS)
+				@echo creating $(NAME)
+				@ar rcs $@ $^
 
-$(OBJDIR)%.o:	$(SRCDIR)%.s
+$(TEST):		$(OBJFILC) $(NAME)
+				$(CC) $(CFLAG) -L./ -lasm $^ -o $@
+
+$(OBJDIR)%.o:	$(SRCDIRS)%.s
+				@mkdir -p lasm_obj
 				$(SC) $(SFLAG) $< -o $@
+
+$(OBJDIR)%.o:	$(SRCDIRC)%.c
+				@mkdir -p lasm_obj
+				$(CC) $(CFLAG) -I $(INCLUDE) -o $@ -c $<
 
 clean:
 				rm -rf $(OBJDIR)
 
 fclean:			clean
 				rm -rf $(NAME)
+				rm -rf $(TEST)
 
 re:				fclean all
