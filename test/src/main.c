@@ -26,10 +26,8 @@ void	sort(int ac, char **av)
 
 int		main(int ac, char **av)
 {
-	if (ac > 2)
+	if (ac > 1)
 		sort(ac, av);
-	else if (ac == 2)
-		test_read(0, av);
 	else
 		ft_write(1, "usage\t: ./name fonction arg ...\n", 32);
 	return (0);
