@@ -4,29 +4,29 @@
 NAME		=	libasm.a
 TEST		=	main_test
 
-SC			=	nasm
-SFLAG		=	-f elf64
+TESTER		=	./test/
 
+SC			=	nasm
 CC			=	clang
+
+SFLAG		=	-f elf64
 CFLAG		=	-Wall -Wextra -Werror
 
+OBJDIR		=	./obj/
+
 SRCS		=	ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
-SRCDIRS		=	./lasm_src/
-SRCFILS		=	$(addprefix $(SRCDIRS), $(SRCS))
-
-SRCC		=	main.c
-SRCDIRC		=	./lasm_test/
-SRCFILC		=	$(addprefix $(SRCDIRC), $(SRCC))
-
-OBJDIR		=	./lasm_obj/
-
 OBJS		=	$(SRCS:.s=.o)
+SRCDIRS		=	./proj/src/
+INCDIRS		=	./proj/inc/
+SRCFILS		=	$(addprefix $(SRCDIRS), $(SRCS))
 OBJFILS		=	$(addprefix $(OBJDIR), $(OBJS))
 
+SRCC		=	main.c _len.c _cpy.c _cmp.c _write.c _read.c _dup.c
 OBJC		=	$(SRCC:.c=.o)
+SRCDIRC		=	./test/src/
+INCDIRC		=	./test/inc/
+SRCFILC		=	$(addprefix $(SRCDIRC), $(SRCC))
 OBJFILC		=	$(addprefix $(OBJDIR), $(OBJC))
-
-INCLUDE		=	./lasm_inc/
 
 all:			$(NAME)
 
@@ -37,15 +37,15 @@ $(NAME):		$(OBJFILS)
 				@ar rcs $@ $^
 
 $(TEST):		$(OBJFILC) $(NAME)
-				$(CC) $(CFLAG) -L./ -lasm $^ -o $@
+				$(CC) $(CFLAG) $^ -o $@
 
 $(OBJDIR)%.o:	$(SRCDIRS)%.s
-				@mkdir -p lasm_obj
+				@mkdir -p $(OBJDIR)
 				$(SC) $(SFLAG) $< -o $@
 
 $(OBJDIR)%.o:	$(SRCDIRC)%.c
-				@mkdir -p lasm_obj
-				$(CC) $(CFLAG) -I $(INCLUDE) -o $@ -c $<
+				@mkdir -p $(OBJDIR)
+				$(CC) $(CFLAG) -I $(INCDIRC) -I $(INCDIRS) -o $@ -c $<
 
 clean:
 				rm -rf $(OBJDIR)
