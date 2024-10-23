@@ -14,27 +14,27 @@ void	do_read(int fd, char *buffer)
 		if (ret == 1)
 		{
 			if (overbuff)
-				ft_write(1, "\n", 1);
+				shrink_write("\n");
 			if (fd == 0)
-				ft_write(1, " > ", 3);
+				shrink_write(" > ");
 			overbuff = 0;
 		}
 		else if (ret == 10)
 		{
-			ft_write(1, buffer, ret);
+			shrink_write(buffer);
 			overbuff = 1;
 		}
 		else
 		{
-			if (fd == 0 && !strcmp(buffer, "exit\n"))
+			if (fd == 0 && !ft_strcmp(buffer, "exit\n"))
 				break;
 			if (buffer[ret - 1] == '\0')
-				ft_write(1, buffer, ret);
+				shrink_write(buffer);
 			else if (buffer[ret - 1] == '\n')
 			{
-				ft_write(1, buffer, ret);
+				shrink_write(buffer);
 				if (fd == 0)
-					ft_write(1, " > ", 3);
+					shrink_write(" > ");
 			}
 			overbuff = 0;
 		}
@@ -55,10 +55,10 @@ void	test_read(int ac, char **av)
 		{
 			if ((fd = open(av[i], O_RDONLY)) != -1)
 			{
-				printf("file:%d open\n", i + 1);
+				// printf("file:%d open\n", i + 1);
 				do_read(fd, buffer);
 				close(fd);
-				printf("file:%d closed\n", i + 1);
+				// printf("file:%d closed\n", i + 1);
 			}
 			i++;
 		}
@@ -67,10 +67,13 @@ void	test_read(int ac, char **av)
 	{
 		if (!ft_strcmp(av[1], "ft_read"))
 		{
-			ft_write(1, "type text (\"exit\" for leave)\n > ", 32);
+			shrink_write("type text (\"exit\" for leave)\n > ");
 			do_read(0, buffer);
 		}
 		else
-			printf("%s\n", av[1]);
+		{
+			shrink_write(av[1]);
+			shrink_write("\n");
+		}
 	}
 }

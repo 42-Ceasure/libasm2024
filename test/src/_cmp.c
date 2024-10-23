@@ -1,29 +1,69 @@
 
 #include <lasm_test.h>
 
+void	strings_equal(void)
+{
+	shrink_write(" strings are equal : ");
+	write_number(0);
+}
+
+void	string_lower(int diff, int realdiff, char *s2)
+{
+	shrink_write(s2);
+	shrink_write(" is greater ");
+	shrink_write(" : ");
+	write_number(diff);
+	shrink_write(" (real:");
+	write_number(realdiff);
+	shrink_write(")");
+}
+
+void	string_greater(int diff, int realdiff, char *s1)
+{
+	shrink_write(s1);
+	shrink_write(" is greater ");
+	shrink_write(" : ");
+	write_number(diff);
+	shrink_write(" (real:");
+	write_number(realdiff);
+	shrink_write(")");
+}
+
+void	compare_strings(char *s1, char *s2)
+{
+		int		diff;
+		int		realdiff;
+
+		diff = ft_strcmp(s1, s2);
+		realdiff = TESTCMP(s1, s2);
+		if (diff == 0)
+			strings_equal();
+		else  if (diff < 0)
+			string_lower(diff, realdiff, s2);
+		else
+			string_greater(diff, realdiff, s1);
+		shrink_write("\n");
+}
+
 void	test_strcmp(int ac, char **av)
 {
-	if (ac != 2)
+	int		i;
+
+	i = 1;
+	if (ac < 2)
 	{
-		ft_write(1, "usage ./name ft_strcmp arg arg", 30);
-		ft_write(1, "\n", 1);
+		shrink_write("usage ./name ft_strcmp arg args...\n");
 		return ;
 	}
-	ft_write(1, "testing ft_strcmp\n", 18);
-	printf("comparing %s and %s\n", av[0], av[1]);
-	if (!ft_strcmp(av[0], av[1]))
-		ft_write(1, "strings are equal", 17);
-	else  if (ft_strcmp(av[0], av[1]) < 0)
+	shrink_write("testing ft_strcmp\n");
+	while (i < ac)
 	{
-		ft_write(1, av[1], ft_strlen(av[1]));
-		ft_write(1, " is greater than ", 17);
-		ft_write(1, av[0], ft_strlen(av[0]));
+		shrink_write("comparing \"");
+		shrink_write(av[0]);
+		shrink_write("\" and \"");
+		shrink_write(av[i]);
+		shrink_write("\".  ");
+		compare_strings(av[0], av[i]);
+		i++;
 	}
-	else
-	{
-		ft_write(1, av[0], ft_strlen(av[0]));
-		ft_write(1, " is greater than ", 17);
-		ft_write(1, av[1], ft_strlen(av[1]));
-	}
-	ft_write(1, "\n", 1);
 }

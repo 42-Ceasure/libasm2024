@@ -22,6 +22,9 @@ void	sort(int ac, char **av)
 		test_strdup(ac - 2, av + 2);
 	if (!ft_strcmp(av[1], "ft_read"))
 		test_read(ac - 2, av + 2);
+
+	if (!ft_strcmp(av[1], "write_number")  && ac >2)
+		write_number(atoi(av[2]));
 }
 
 int		main(int ac, char **av)
@@ -29,6 +32,6 @@ int		main(int ac, char **av)
 	if (ac > 1)
 		sort(ac, av);
 	else
-		ft_write(1, "usage\t: ./name fonction arg ...\n", 32);
+		shrink_write("usage\t: ./name fonction args ...\n");
 	return (0);
 }
