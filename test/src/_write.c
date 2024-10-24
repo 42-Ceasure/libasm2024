@@ -65,6 +65,11 @@ void	test_write(int ac, char **av)
 {
 	int		i;
 
+	if (ac == 0)
+	{
+		shrink_write("usage ./name ft_write args ...\n");
+		return ;
+	}
 	i = 0;
 	while (i < ac)
 	{
