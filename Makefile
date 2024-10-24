@@ -31,16 +31,17 @@ INCDIRC		=	./test/inc/
 SRCFILC		=	$(addprefix $(SRCDIRC), $(SRCC))
 OBJFILC		=	$(addprefix $(OBJDIR), $(OBJC))
 
-all:			$(NAME)
+all			:	$(NAME)
 
-test:			$(NAME) $(TEST)
+test		:	$(NAME) $(TEST)
 
-$(NAME):		$(OBJFILS)
+$(NAME)		:	$(OBJFILS)
 				@echo creating $(NAME)
 				@ar rcs $@ $^
 
-$(TEST):		$(OBJFILC) $(NAME)
-				$(CC) $(CFLAG) $^ -o $@
+$(TEST)		:	$(OBJFILC) $(NAME)
+				@echo creating $(TEST)
+				@$(CC) $(CFLAG) -z noexecstack $^ -o $@
 
 $(OBJDIR)%.o:	$(SRCDIRS)%.s
 				@mkdir -p $(OBJDIR)
@@ -50,11 +51,11 @@ $(OBJDIR)%.o:	$(SRCDIRC)%.c
 				@mkdir -p $(OBJDIR)
 				$(CC) $(CFLAG) -I $(INCDIRC) -I $(INCDIRS) -o $@ -c $<
 
-clean:
+clean		:
 				rm -rf $(OBJDIR)
 
-fclean:			clean
+fclean		:			clean
 				rm -rf $(NAME)
 				rm -rf $(TEST)
 
-re:				fclean all
+re			:	fclean all
