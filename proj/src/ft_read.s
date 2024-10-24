@@ -4,6 +4,7 @@
 bits	64
 
 global	ft_read
+extern	__errno_location
 
 section	.text
 
@@ -12,15 +13,20 @@ section	.text
 		mov rbp, rsp
 
 	start_ft:
-		mov	rax, 0
+		mov rax, 0
 		syscall
-		jc	error
+		cmp rax, 0
+		jl	error_ft
 
 	exit_ft:
-		mov	rsp, rbp
-		pop	rbp
+		mov rsp, rbp
+		pop rbp
 		ret
 
-	error:
-		mov	rax, -1
-		jmp	exit_ft
+	error_ft:
+		neg rax
+		mov r12, rax
+		call __errno_location WRT ..plt
+		mov [rax], r12
+		mov rax, -1
+		jmp exit_ft

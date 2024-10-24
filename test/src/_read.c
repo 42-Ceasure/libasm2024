@@ -7,7 +7,7 @@ void	do_read(int fd, char *buffer)
 	int lastret;
 
 	lastret = 0;
-	while ((ret = ft_read(fd, buffer, 10)))
+	while ((ret = ft_read(fd, buffer, 10)) > 0)
 	{
 		buffer[ret] = '\0';
 		if (fd == 0)

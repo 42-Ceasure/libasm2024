@@ -7,16 +7,29 @@
 // rax, rcx, rdx, rsi, rdi, r8, r9, r10, r11
 
 #include <lasm_test.h>
-#include <stdio.h>
+
+void	do_read(int fd, char *buffer);
 
 void	custom_test(void)
 {
 	int		i;
+	int 	fd;
+	char	buffer[11];
 
 	shrink_write("custom test.\n");
-	i = ft_write(1, NULL, 5);
-	if (i < 0)
-		perror("c_test");
+	if ((fd = open("test", O_RDONLY)) != -1)
+	{
+		shrink_write("file open.\n");
+		while ((i = ft_read(fd, buffer, 10)) > 0)
+		{
+			buffer[10] = '\0';
+			shrink_write(buffer);
+		}
+		if (i < 0)
+			perror("c_test");
+		close(fd);
+		shrink_write("file closed.\n");
+	}
 }
 
 void	sort(int ac, char **av)

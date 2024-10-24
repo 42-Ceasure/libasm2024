@@ -24,7 +24,8 @@ section	.text
 	start_ft:
 		mov rax, 1
 		syscall
-		jc error_ft
+		cmp rax, 0
+		jl	error_ft
 
 	exit_ft:
 		mov rsp, rbp
