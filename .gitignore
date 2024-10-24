@@ -1,2 +1,4 @@
 obj
-test
+libasm.a
+main_test
+.vscode

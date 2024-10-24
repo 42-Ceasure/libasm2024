@@ -7,15 +7,15 @@
 
 bits	64
 
-global	_ft_strdup
+global	ft_strdup
 
-extern	_ft_strlen
-extern	_ft_strcpy
+extern	ft_strlen
+extern	ft_strcpy
 extern	malloc
 
 section	.text
 
-	_ft_strdup:
+	ft_strdup:
 
 	error_check:
 		push rbp
@@ -25,15 +25,15 @@ section	.text
 
 	start_ft:
 		push rdi		; save str_alpha pointer on stack;
-		call _ft_strlen
+		call ft_strlen
 		inc rax
 		mov rdi, rax
-		call malloc
+		call malloc WRT ..plt
 		cmp rax, 0
 		je exit_ft
 		mov rdi, rax
 		pop rsi
-		call _ft_strcpy
+		call ft_strcpy
 
 	exit_ft:
 		mov rsp, rbp

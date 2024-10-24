@@ -22,9 +22,6 @@ void	sort(int ac, char **av)
 		test_strdup(ac - 2, av + 2);
 	if (!ft_strcmp(av[1], "ft_read"))
 		test_read(ac - 2, av + 2);
-
-	if (!ft_strcmp(av[1], "write_number")  && ac >2)
-		write_number(atoi(av[2]));
 }
 
 int		main(int ac, char **av)
