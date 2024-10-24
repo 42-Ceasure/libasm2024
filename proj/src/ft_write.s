@@ -13,14 +13,28 @@ bits	64
 
 global	ft_write
 
+extern	__errno_location
+
 section	.text
 
 	ft_write:
+		push rbp
+		mov rbp, rsp
+
+	start_ft:
 		mov rax, 1
 		syscall
-		jc error
+		jc error_ft
+
+	exit_ft:
+		mov rsp, rbp
+		pop rbp
 		ret
 
-	error:
+	error_ft:
+		neg rax
+		mov r12, rax
+		call __errno_location WRT ..plt
+		mov [rax], r12
 		mov rax, -1
-		ret
+		jmp exit_ft
