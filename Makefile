@@ -1,19 +1,21 @@
 
 .PHONY:		all, clean, fclean, re
 
-NAME		=	libasm.a
-TEST		=	main_test
+# test_executable
+TEST		=	prog
 
-TESTER		=	./test/
-
+# compiler
 SC			=	nasm
 CC			=	clang
 
+# flags
 SFLAG		=	-f elf64
 CFLAG		=	-Wall -Wextra -Werror
 
 OBJDIR		=	./obj/
 
+# libasm
+NAME		=	libasm.a
 SRCS		=	ft_strlen.s ft_strcpy.s ft_strcmp.s ft_write.s ft_read.s ft_strdup.s
 OBJS		=	$(SRCS:.s=.o)
 SRCDIRS		=	./proj/src/
@@ -21,6 +23,7 @@ INCDIRS		=	./proj/inc/
 SRCFILS		=	$(addprefix $(SRCDIRS), $(SRCS))
 OBJFILS		=	$(addprefix $(OBJDIR), $(OBJS))
 
+# test
 SRCC		=	main.c _len.c _cpy.c _cmp.c _write.c _read.c _dup.c
 OBJC		=	$(SRCC:.c=.o)
 SRCDIRC		=	./test/src/
