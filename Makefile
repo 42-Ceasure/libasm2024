@@ -9,8 +9,8 @@ SC			=	nasm
 CC			=	clang
 
 # flags
-SFLAG		=	-f elf64
-CFLAG		=	-Wall -Wextra -Werror
+SFLAG		=	-f elf64 -g
+CFLAG		=	-Wall -Wextra -Werror -g
 
 OBJDIR		=	./obj/
 

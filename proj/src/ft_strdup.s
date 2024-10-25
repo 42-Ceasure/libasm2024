@@ -25,14 +25,16 @@ section	.text
 
 	start_ft:
 		push rdi		; save str_alpha pointer on stack;
+		sub rsp, 8
 		call ft_strlen
 		inc rax
 		mov rdi, rax
 		call malloc
 		cmp rax, 0
+		add rsp, 8
+		pop rsi
 		je exit_ft
 		mov rdi, rax
-		pop rsi
 		call ft_strcpy
 
 	exit_ft:
