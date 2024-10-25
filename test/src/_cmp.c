@@ -1,3 +1,4 @@
+/* Nice42Header */
 
 #include <lasm_test.h>
 
@@ -31,18 +32,18 @@ void	string_greater(int diff, int realdiff, char *s1)
 
 void	compare_strings(char *s1, char *s2)
 {
-		int		diff;
-		int		realdiff;
+	int		diff;
+	int		realdiff;
 
-		diff = ft_strcmp(s1, s2);
-		realdiff = TESTCMP(s1, s2);
-		if (diff == 0)
-			strings_equal();
-		else  if (diff < 0)
-			string_lower(diff, realdiff, s2);
-		else
-			string_greater(diff, realdiff, s1);
-		shrink_write("\n");
+	diff = ft_strcmp(s1, s2);
+	realdiff = TESTCMP(s1, s2);
+	if (diff == 0)
+		strings_equal();
+	else if (diff < 0)
+		string_lower(diff, realdiff, s2);
+	else
+		string_greater(diff, realdiff, s1);
+	shrink_write("\n");
 }
 
 void	test_strcmp(int ac, char **av)

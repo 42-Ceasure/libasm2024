@@ -35,7 +35,7 @@ section	.text
 	error_ft:
 		neg rax
 		mov r12, rax
-		call __errno_location WRT ..plt
+		call __errno_location
 		mov [rax], r12
 		mov rax, -1
 		jmp exit_ft

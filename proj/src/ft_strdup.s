@@ -28,7 +28,7 @@ section	.text
 		call ft_strlen
 		inc rax
 		mov rdi, rax
-		call malloc WRT ..plt
+		call malloc
 		cmp rax, 0
 		je exit_ft
 		mov rdi, rax

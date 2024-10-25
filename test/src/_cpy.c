@@ -1,3 +1,4 @@
+/* Nice42Header */
 
 #include <lasm_test.h>
 

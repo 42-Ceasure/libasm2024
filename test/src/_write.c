@@ -1,7 +1,8 @@
+/* Nice42Header */
 
 #include <lasm_test.h>
 
-int		count_char(int nb)
+int	count_char(int nb)
 {
 	int		i;
 	long	number;

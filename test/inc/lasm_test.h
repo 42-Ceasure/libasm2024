@@ -1,14 +1,16 @@
-#ifndef _TEST_H
-# define _TEST_H
+/* Nice42Header */
 
-#include <stdlib.h>
-#include <fcntl.h>
-#include <string.h>
-#include <stdio.h>
+#ifndef LASM_TEST_H
+# define LASM_TEST_H
 
-#include "libasm.h"
+# include <stdlib.h>
+# include <fcntl.h>
+# include <string.h>
+# include <stdio.h>
 
-#define TESTCMP ft_strcmp
+# include "libasm.h"
+
+# define TESTCMP ft_strcmp
 
 void	test_strlen(int ac, char **av);
 void	test_strcpy(int ac, char **av);

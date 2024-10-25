@@ -13,15 +13,19 @@ void	do_read(int fd, char *buffer);
 void	custom_test(void)
 {
 	int		i;
-	int 	fd;
+	int		fd;
 	char	buffer[11];
 
+	fd = open("test", O_RDONLY);
 	shrink_write("custom test.\n");
-	if ((fd = open("test", O_RDONLY)) != -1)
+	if (fd != -1)
 	{
 		shrink_write("file open.\n");
-		while ((i = ft_read(fd, buffer, 10)) > 0)
+		while (1)
 		{
+			i = ft_read(fd, buffer, 10);
+			if (i < 1)
+				break ;
 			buffer[10] = '\0';
 			shrink_write(buffer);
 		}
@@ -60,7 +64,7 @@ void	hint(void)
 	shrink_write(" ft_write ft_read ft_strdup\n");
 }
 
-int		main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	if (ac < 2)
 		hint();

@@ -1,9 +1,10 @@
+/* Nice42Header */
 
 #include <lasm_test.h>
 
 void	test_strlen(int ac, char **av)
 {
-	int 	i;
+	int		i;
 	int		len;
 
 	i = 0;

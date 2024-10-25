@@ -1,19 +1,23 @@
+/* Nice42Header */
 
 #include <lasm_test.h>
 
 void	do_read(int fd, char *buffer)
 {
 	int	ret;
-	int lastret;
+	int	lastret;
 
 	lastret = 0;
-	while ((ret = ft_read(fd, buffer, 10)) > 0)
+	while (1)
 	{
+		ret = ft_read(fd, buffer, 10);
+		if (ret < 1)
+			break ;
 		buffer[ret] = '\0';
 		if (fd == 0)
 		{
 			if (!ft_strcmp(buffer, "exit\n"))
-				break;
+				break ;
 			if (ret != 1)
 				shrink_write(buffer);
 			else if (lastret == 10)
@@ -21,7 +25,7 @@ void	do_read(int fd, char *buffer)
 			if (ret != 10 || buffer[9] == '\n')
 				shrink_write(" > ");
 			lastret = ret;
-		}	
+		}
 		else
 			shrink_write(buffer);
 	}
@@ -35,7 +39,8 @@ void	read_ff(int ac, char **av, char *buffer)
 	i = 0;
 	while (i < ac)
 	{
-		if ((fd = open(av[i], O_RDONLY)) != -1)
+		fd = open(av[i], O_RDONLY);
+		if (fd != -1)
 		{
 			shrink_write("file open.\n");
 			do_read(fd, buffer);

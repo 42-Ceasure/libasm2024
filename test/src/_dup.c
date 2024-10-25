@@ -1,3 +1,4 @@
+/* Nice42Header */
 
 #include <lasm_test.h>
 
@@ -19,6 +20,7 @@ void	process_dup(int ac, char **av, char **cpy)
 void	test_strdup(int ac, char **av)
 {
 	char	**cpy;
+
 	if (ac == 0)
 	{
 		shrink_write("usage ./name ft_strdup args ...\n");
