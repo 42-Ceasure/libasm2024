@@ -1,11 +1,20 @@
-/* Nice42Header */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   libasm.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/25 10:54:07 by cglavieu          #+#    #+#             */
+/*   Updated: 2024/10/25 10:54:10 by cglavieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef LIBASM_H
 # define LIBASM_H
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <errno.h>
 
 size_t		ft_strlen(char *str);
 char		*ft_strcpy(char *dest, const char *src);

@@ -1,12 +1,20 @@
-/* Nice42Header */
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lasm_test.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/25 10:54:20 by cglavieu          #+#    #+#             */
+/*   Updated: 2024/10/25 10:54:27 by cglavieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef LASM_TEST_H
 # define LASM_TEST_H
 
 # include <stdlib.h>
 # include <fcntl.h>
-# include <string.h>
-# include <stdio.h>
 
 # include "libasm.h"
 

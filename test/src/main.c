@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cglavieu <cglavieu@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/25 10:54:42 by cglavieu          #+#    #+#             */
+/*   Updated: 2024/10/25 11:47:31 by cglavieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 // Entiers de 64 bits : rdi, rsi, rdx, rcx, r8, r9
 
 // Registres sauvegardés par l'appelé
@@ -30,7 +42,7 @@ void	custom_test(void)
 			shrink_write(buffer);
 		}
 		if (i < 0)
-			perror("c_test");
+			shrink_write("error\n");
 		close(fd);
 		shrink_write("file closed.\n");
 	}
